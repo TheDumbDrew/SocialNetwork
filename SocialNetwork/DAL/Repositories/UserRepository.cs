@@ -7,13 +7,15 @@ namespace SocialNetwork.DAL.Repositories
     {
         public int Create(UserEntity userEntity)
         {
-            return Execute(@"insert into user (firstname, lastname, password, email)
-                    values (:firstname,:lastname,:password,:email)", userEntity);
+            return Execute(@"insert into users (firstname,lastname,password,email) 
+                             values (:firstname,:lastname,:password,:email)", userEntity);
         }
+
         public IEnumerable<UserEntity> FindAll()
         {
             return Query<UserEntity>("select * from users");
         }
+
         public UserEntity FindByEmail(string email)
         {
             return QueryFirstOrDefault<UserEntity>("select * from users where email = :email_p", new { email_p = email });
@@ -27,7 +29,7 @@ namespace SocialNetwork.DAL.Repositories
         public int Update(UserEntity userEntity)
         {
             return Execute(@"update users set firstname = :firstname, lastname = :lastname, password = :password, email = :email,
-                             photo = :photo, favorite_movie = :favorite_movie, favorite_book = :favorite_book where id = :id", userEntity);
+                             photo = :photo, favorite_movie = :favorite_movie, favorite_book = :favorite_book", userEntity);
         }
 
         public int DeleteById(int id)
@@ -46,5 +48,3 @@ namespace SocialNetwork.DAL.Repositories
         int DeleteById(int id);
     }
 }
-    
-

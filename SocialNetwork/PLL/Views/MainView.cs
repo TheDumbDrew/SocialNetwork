@@ -21,7 +21,7 @@ namespace SocialNetwork.PLL.Views
                         break;
                     }
 
-                case "2:":
+                case "2":
                     {
                         Program.registrationView.Show();
                         break;
